@@ -1,0 +1,35 @@
+# Ignore node_modules in both front-end and back-end
+/front-end/node_modules/
+/back-end/node_modules/
+
+# Ignore build and dist folders in both front-end and back-end
+/front-end/build/
+/front-end/dist/
+/back-end/build/
+/back-end/dist/
+
+# Ignore logs from both front-end and back-end
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Ignore environment files for both front-end and back-end
+/front-end/.env
+/back-end/.env
+
+# Ignore IDE files (for both front-end and back-end)
+.idea/
+/.vscode/
+
+# Ignore temporary and backup files (for both front-end and back-end)
+*.swp
+*.swo
+*.bak
+*.tmp
+
+# Miscellaneous files (can be platform specific)
+.DS_Store
+Thumbs.db
+
+# Ignore any other specific folders or files you want to exclude from version control
