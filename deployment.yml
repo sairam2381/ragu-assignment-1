@@ -1,0 +1,18 @@
+version: "3" #mostly version 3 is used everywhere that's why I have taken that
+services:
+  frontend:
+    build:
+      context: ./front-end/my-react-app #this is the path of the frontend docker file
+      dockerfile: Dockerfile #this is the name of the docker file
+    image: docker-frontend #this is the image name
+    ports:
+      - "5173:5173" #this is the port number I want to run it
+      #this can be made to run in the port 3000 as well by 3000:5173
+  backend:
+    build:
+      context: ./back-end/ #this is the backend path
+      dockerfile: Dockerfile #this is the file name that we are having
+    image: docker-backend #this is the image name
+    ports:
+      - "5001:5001" #this is the port number I want to run
+      #if I want to run it on 21000 then I can do it like 21000:5001
