@@ -8,7 +8,7 @@ const swaggerUi = require("swagger-ui-express");
 const swaggerJsDoc = require("swagger-jsdoc");
 
 database.connect();
-//Hello wo5ld
+//Hello wo5ld dsn
 app.use(
   cors({
     origin: true,
