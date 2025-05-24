@@ -1,28 +1,12 @@
-import { FlatCompat } from "@eslint/eslintrc";
-const compat = new FlatCompat();
+import eslintRecommended from "eslint/conf/eslint-recommended.js";
 
 export default [
+  eslintRecommended,
   {
-    languageOptions: {
-      globals: {
-        require: "readonly",
-        module: "readonly",
-        exports: "readonly",
-        process: "readonly",
-        console: "readonly",
-      },
-      parserOptions: {
-        ecmaVersion: 2021,
-        sourceType: "script", // or 'module' if you use ES modules elsewhere
-      },
-    },
-    env: {
-      node: true,
-      commonjs: true,
-    },
+    files: ["**/*.js"],
     rules: {
-      // your rules here
+      semi: ["error", "always"],
+      quotes: ["error", "single"],
     },
   },
-  ...compat.extends("eslint:recommended"),
 ];
