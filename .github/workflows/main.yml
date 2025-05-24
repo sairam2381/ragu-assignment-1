@@ -1,20 +1,20 @@
-name: Node API CI/CD
+name: Fullstack CI
 
 on:
   push:
     paths:
-      - "back-end/**"
-      - "front-end/my-react-app/**"
+      - 'front-end/**'
+      - 'back-end/**'
     branches: [master]
   pull_request:
     paths:
-      - "back-end/**"
-      - "front-end/my-react-app/**"
+      - 'front-end/**'
+      - 'back-end/**'
     branches: [master]
 
 jobs:
-  backend-build:
-    name: Backend Build & Test
+  backend:
+    name: Backend Build, Lint & Test
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -26,21 +26,23 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: "18"
+          node-version: '18'
 
       - name: Install dependencies
         run: npm install
 
+      - name: Run lint
+        run: npm run lint
+
       - name: Run tests
         run: npm test
 
-  frontend-build:
-    name : Frontend Build & Test
+  frontend:
+    name: Frontend Build, Lint & Test
     runs-on: ubuntu-latest
     defaults:
       run:
         working-directory: front-end
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -50,8 +52,11 @@ jobs:
         with:
           node-version: '18'
 
-      - name: Install frontend dependencies
+      - name: Install dependencies
         run: npm install
-        
-      - name: Build frontend
-        run: npm run build
+
+      - name: Run lint
+        run: npm run lint
+
+      - name: Run tests
+        run: npm run test -- --watchAll=false
