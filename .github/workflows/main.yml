@@ -3,12 +3,12 @@ name: Fullstack CI
 on:
   push:
     paths:
-      - 'front-end/**'
+      - 'front-end/my-react-app/**'
       - 'back-end/**'
     branches: [master]
   pull_request:
     paths:
-      - 'front-end/**'
+      - 'front-end/my-react-app/**'
       - 'back-end/**'
     branches: [master]
 
@@ -42,7 +42,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: front-end
+        working-directory: my-react-app
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
