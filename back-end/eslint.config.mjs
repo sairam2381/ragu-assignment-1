@@ -1,16 +1,28 @@
-import eslintPluginJs from "@eslint/js";
+import { FlatCompat } from "@eslint/eslintrc";
+const compat = new FlatCompat();
 
 export default [
   {
-    ignores: ["node_modules/**"],
-    files: ["**/*.js"],
     languageOptions: {
-      ecmaVersion: 2022,
-      sourceType: "module",
+      globals: {
+        require: "readonly",
+        module: "readonly",
+        exports: "readonly",
+        process: "readonly",
+        console: "readonly",
+      },
+      parserOptions: {
+        ecmaVersion: 2021,
+        sourceType: "script", // or 'module' if you use ES modules elsewhere
+      },
     },
-    plugins: {},
+    env: {
+      node: true,
+      commonjs: true,
+    },
     rules: {
-      ...eslintPluginJs.configs.recommended.rules,
+      // your rules here
     },
   },
+  ...compat.extends("eslint:recommended"),
 ];
