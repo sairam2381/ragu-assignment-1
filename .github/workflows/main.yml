@@ -3,15 +3,18 @@ name: Node API CI/CD
 on:
   push:
     paths:
-      - 'back-end/**'
+      - "back-end/**"
+      - "front-end/my-react-app/**"
     branches: [master]
   pull_request:
     paths:
-      - 'back-end/**'
+      - "back-end/**"
+      - "front-end/my-react-app/**"
     branches: [master]
 
 jobs:
-  build:
+  backend-build:
+    name: Backend Build & Test
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -30,3 +33,25 @@ jobs:
 
       - name: Run tests
         run: npm test
+
+  frontend-build:
+    name : Frontend Build & Test
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: front-end
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Install frontend dependencies
+        run: npm install
+        
+      - name: Build frontend
+        run: npm run build
